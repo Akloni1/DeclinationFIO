@@ -7,42 +7,86 @@ using System.Xml.Linq;
 
 namespace DeclensionOfFullName
 {
-    public static class DeclensionFIO
+    public class DeclensionFIO : DeclensionFIOBase
     {
         private static string _firstName { get; set; }
         private static string _lastName { get; set; }
         private static string _middleName { get; set; }
         private static string _FIO { get; set; }
-        private const string _consonants = "бвгджзйклмнпрстфхцчшщ"; // согласные русского алфавита 
+        private const string _consonants = "бвгджзйклмнпрстфхцчшщ"; // согласные буквы русского алфавита 
 
 
-        //Метод возвращает имя 
-        private static string ParseFirstName(string FIO)
-        {
-            return FIO.Split(' ').Skip(1).Take(1).FirstOrDefault();
-        }
+        /* //Метод возвращает имя 
+         private static string ParseFirstName(string FIO)
+         {
+             return FIO.Split(' ').Skip(1).Take(1).FirstOrDefault();
+         }
 
-        //Метод возвращает фамилию 
-        private static string ParseLastName(string FIO)
-        {
-            return FIO.Split(' ').Take(1).FirstOrDefault();
+         //Метод возвращает фамилию 
+         private static string ParseLastName(string FIO)
+         {
+             return FIO.Split(' ').Take(1).FirstOrDefault();
 
-        }
+         }
 
-        //Метод возвращает отчество  
-        private static string ParseMiddleName(string FIO)
-        {
-            return FIO.Split(' ').Skip(2).Take(1).FirstOrDefault();
-        }
+         //Метод возвращает отчество  
+         private static string ParseMiddleName(string FIO)
+         {
+             return FIO.Split(' ').Skip(2).Take(1).FirstOrDefault();
+         }*/
 
         //Метод склоняет имя 
         public static string DeclensionFirstName(string firstName)
         {
-            return "";
+            if (firstName.Substring(firstName.Length - 1) == "а")
+            {
+                return firstName.Substring(0, firstName.Length - 1) + "ы";
+            }
+            else if (firstName.Substring(firstName.Length - 1) == "я")
+            {
+                return firstName.Substring(0, firstName.Length - 1) + "и";
+            }
+            else if (IsMale(ParseMiddleName(_FIO)))// относится ли фио мужчине 
+            {
+                if (firstName == "Лев")
+                {
+                    return "Льва";
+                }
+                else if (firstName == "Петр")
+                {
+                    return "Петра";
+                }
+                else if (firstName == "Пётр")
+                {
+                    return "Петра";
+                }
+                else if (firstName.Substring(firstName.Length - 1) == "й")
+                {
+                    return firstName.Substring(0, firstName.Length - 1) + "я";
+                }
+                else if (_consonants.Any(i => i.ToString() == firstName.Substring(firstName.Length - 1))) //Если последняя буква согласная то
+                {
+                    return firstName + "а";
+                }
+                if (firstName.Substring(firstName.Length - 1) == "ь")
+                {
+                    return firstName.Substring(0, firstName.Length - 1) + "я";
+                }
+            }
+            else if (IsFemale(ParseMiddleName(_FIO)))// относится ли фио женщине
+            {
+                if (firstName.Substring(firstName.Length - 1) == "ь")
+                {
+                    return firstName.Substring(0, firstName.Length - 1) + "и";
+                }
+            }
+            
+            return firstName;
         }
         //Метод склоняет фамилию 
         public static string DeclensionLastName(string lastName)
         {
+
             if (lastName.Substring(lastName.Length - 1) == "о" ||
                 lastName.Substring(lastName.Length - 1) == "е" ||
                 lastName.Substring(lastName.Length - 1) == "ё" ||
@@ -60,11 +104,10 @@ namespace DeclensionOfFullName
             {
                 return lastName;
             }
-
-            /*  else if (lastName.Substring(lastName.Length - 1) == "а") // если фамилия заканчивается на а, переводим в родительный падеж(удаляем а добавляем ы)
-              {
-                  return lastName.Substring(0, lastName.Length - 1)+"ы";
-              }*/
+            else if (lastName.Substring(lastName.Length - 1) == "я")//если фамилия заканчивается на я,  переводим в родительный падеж(обрезаем последнюю "я" и добавляем "и" в конец)
+            {
+                return lastName.Substring(0, lastName.Length - 1) + "и";
+            }
             else if (IsMale(ParseMiddleName(_FIO)))// относится ли фио мужчине 
             {
                 if (lastName.Substring(lastName.Length - 1) == "к") //если фамилия заканчивается на к, переводим в родительный падеж(добавляем "а" в конец)
@@ -98,7 +141,7 @@ namespace DeclensionOfFullName
                 }
                 else if (_consonants.Any(i => i.ToString() == lastName.Substring(lastName.Length - 1))) //Является ли последняя буква фамилии согласной
                 {
-                    return lastName+"а";
+                    return lastName + "а";
                 }
                 else if (lastName.Substring(lastName.Length - 1) == "а")//если фамилия заканчивается на а,  переводим в родительный падеж(обрезаем последнюю "а" и добавляем "ы" в конец)
                 {
@@ -109,7 +152,7 @@ namespace DeclensionOfFullName
                     return lastName.Substring(0, lastName.Length - 1) + "я";
                 }
 
-                return "мужик";
+                return lastName;
             }
 
 
@@ -148,12 +191,20 @@ namespace DeclensionOfFullName
                     return lastName;
                 }
             }
-            return "";
+            return lastName;
         }
         //Метод склоняет отчество 
         public static string DeclensionMiddleName(string middleName)
         {
-            return "";
+            if (IsMale(ParseMiddleName(_FIO)))// относится ли фио мужчине 
+            {
+                return middleName + "а";
+            }
+            else if (IsFemale(ParseMiddleName(_FIO)))// относится ли фио женщине
+            {
+                return middleName.Substring(0, middleName.Length - 1) + "ы";
+            }
+            return middleName;
         }
         //Метод возвращает склоненное имя - отчество 
         public static string GetDeclensionOfThePatronymicName()
@@ -167,10 +218,10 @@ namespace DeclensionOfFullName
             return "";
         }
         //Метод возвращает склоненные ФИО
-        public static string GetDeclensionLastNameFirstNameMiddleName(string FIO)
+        public override string GetDeclensionLastNameFirstNameMiddleName(string FIO)
         {
             _FIO = FIO;
-            return DeclensionLastName(ParseLastName(FIO));
+            return DeclensionLastName(ParseLastName(FIO)) + " " + DeclensionFirstName(ParseFirstName(FIO)) + " " + DeclensionMiddleName(ParseMiddleName(FIO));
         }
 
         //Метод определяет принадлежит ло отчество мужчине 
