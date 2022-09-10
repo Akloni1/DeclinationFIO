@@ -8,6 +8,8 @@ namespace DeclensionOfFullName
 {
     public abstract class DeclensionFIOBase
     {
+        protected static string _FIO { get; set; }
+        protected const string _consonants = "бвгджзйклмнпрстфхцчшщ"; // согласные буквы русского алфавита 
         //Метод возвращает имя 
         protected static string ParseFirstName(string FIO)
         {
@@ -27,7 +29,16 @@ namespace DeclensionOfFullName
             return FIO.Split(' ').Skip(2).Take(1).FirstOrDefault();
         }
 
-        public abstract string GetDeclensionLastNameFirstNameMiddleName(string FIO);
+        //Метод возвращает склоненные ФИО
+        public string GetDeclensionLastNameFirstNameMiddleName(string FIO)
+        {
+            _FIO = FIO;
+            return DeclensionLastName(ParseLastName(FIO)) + " " + DeclensionFirstName(ParseFirstName(FIO)) + " " + DeclensionMiddleName(ParseMiddleName(FIO));
+        }
+
+        public abstract string DeclensionFirstName(string firstName);
+        public abstract string DeclensionLastName(string lastName);
+        public abstract string DeclensionMiddleName(string middleName);
 
     }
 }

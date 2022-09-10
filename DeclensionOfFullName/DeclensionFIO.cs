@@ -9,11 +9,8 @@ namespace DeclensionOfFullName
 {
     public class DeclensionFIO : DeclensionFIOBase
     {
-        private static string _firstName { get; set; }
-        private static string _lastName { get; set; }
-        private static string _middleName { get; set; }
-        private static string _FIO { get; set; }
-        private const string _consonants = "бвгджзйклмнпрстфхцчшщ"; // согласные буквы русского алфавита 
+       
+       // private const string _consonants = "бвгджзйклмнпрстфхцчшщ"; // согласные буквы русского алфавита 
 
 
         /* //Метод возвращает имя 
@@ -36,7 +33,7 @@ namespace DeclensionOfFullName
          }*/
 
         //Метод склоняет имя 
-        public static string DeclensionFirstName(string firstName)
+        public override string DeclensionFirstName(string firstName)
         {
             if (firstName.Substring(firstName.Length - 1) == "а")
             {
@@ -84,7 +81,7 @@ namespace DeclensionOfFullName
             return firstName;
         }
         //Метод склоняет фамилию 
-        public static string DeclensionLastName(string lastName)
+        public override string DeclensionLastName(string lastName)
         {
 
             if (lastName.Substring(lastName.Length - 1) == "о" ||
@@ -194,7 +191,7 @@ namespace DeclensionOfFullName
             return lastName;
         }
         //Метод склоняет отчество 
-        public static string DeclensionMiddleName(string middleName)
+        public override string DeclensionMiddleName(string middleName)
         {
             if (IsMale(ParseMiddleName(_FIO)))// относится ли фио мужчине 
             {
@@ -218,11 +215,11 @@ namespace DeclensionOfFullName
             return "";
         }
         //Метод возвращает склоненные ФИО
-        public override string GetDeclensionLastNameFirstNameMiddleName(string FIO)
+       /* public override string GetDeclensionLastNameFirstNameMiddleName(string FIO)
         {
             _FIO = FIO;
             return DeclensionLastName(ParseLastName(FIO)) + " " + DeclensionFirstName(ParseFirstName(FIO)) + " " + DeclensionMiddleName(ParseMiddleName(FIO));
-        }
+        }*/
 
         //Метод определяет принадлежит ло отчество мужчине 
         public static bool IsMale(string middleName)
