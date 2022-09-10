@@ -16,8 +16,8 @@ namespace DeclensionOfFullName
         private const string _consonants = "бвгджзйклмнпрстфхцчшщ"; // согласные русского алфавита 
 
 
-    //Метод возвращает имя 
-    private static string ParseFirstName(string FIO)
+        //Метод возвращает имя 
+        private static string ParseFirstName(string FIO)
         {
             return FIO.Split(' ').Skip(1).Take(1).FirstOrDefault();
         }
@@ -26,7 +26,7 @@ namespace DeclensionOfFullName
         private static string ParseLastName(string FIO)
         {
             return FIO.Split(' ').Take(1).FirstOrDefault();
-           
+
         }
 
         //Метод возвращает отчество  
@@ -43,38 +43,109 @@ namespace DeclensionOfFullName
         //Метод склоняет фамилию 
         public static string DeclensionLastName(string lastName)
         {
-            if (lastName.Substring(lastName.Length - 1) == "о"||
-                lastName.Substring(lastName.Length - 1) == "е"||
-                lastName.Substring(lastName.Length - 1) == "э"||
-                lastName.Substring(lastName.Length - 1) == "у"||
+            if (lastName.Substring(lastName.Length - 1) == "о" ||
+                lastName.Substring(lastName.Length - 1) == "е" ||
+                lastName.Substring(lastName.Length - 1) == "ё" ||
+                lastName.Substring(lastName.Length - 1) == "э" ||
+                lastName.Substring(lastName.Length - 1) == "у" ||
+                lastName.Substring(lastName.Length - 1) == "и" ||
+                lastName.Substring(lastName.Length - 1) == "ы" ||
                 lastName.Substring(lastName.Length - 1) == "ю")
             {
                 return lastName;
             }
-            else if (lastName.Substring(lastName.Length - 2) == "их"|| 
-                     lastName.Substring(lastName.Length - 2) == "ых"||
+            else if (lastName.Substring(lastName.Length - 2) == "их" ||
+                     lastName.Substring(lastName.Length - 2) == "ых" ||
                      lastName.Substring(lastName.Length - 2) == "иа")
             {
                 return lastName;
             }
-            else if (lastName.Substring(lastName.Length - 1) == "а") // если фамилия заканчивается на а, переводим в родительный падеж(удаляем а добавляем ы)
+
+            /*  else if (lastName.Substring(lastName.Length - 1) == "а") // если фамилия заканчивается на а, переводим в родительный падеж(удаляем а добавляем ы)
+              {
+                  return lastName.Substring(0, lastName.Length - 1)+"ы";
+              }*/
+            else if (IsMale(ParseMiddleName(_FIO)))// относится ли фио мужчине 
             {
-               // return lastName.Substring(0, lastName.Length - 1)+"ы";
-            }
-            else if (IsMale(ParseMiddleName(_FIO)))
-            {
+                if (lastName.Substring(lastName.Length - 1) == "к") //если фамилия заканчивается на к, переводим в родительный падеж(добавляем "а" в конец)
+                {
+                    return lastName + "а";
+                }
+                else if (lastName.Substring(lastName.Length - 2) == "ов" ||//если фамилия заканчивается на ов или ев,  переводим в родительный падеж(добавляем "а" в конец)
+                   lastName.Substring(lastName.Length - 2) == "ев")
+                {
+                    return lastName + "а";
+                }
+                else if (lastName.Substring(lastName.Length - 2) == "ин" ||//если фамилия заканчивается на ин или ын,  переводим в родительный падеж(добавляем "а" в конец)
+                  lastName.Substring(lastName.Length - 2) == "ын")
+                {
+                    return lastName + "а";
+                }
+                else if (lastName.Substring(lastName.Length - 4) == "ский" ||//если фамилия заканчивается на цкий или ский,  переводим в родительный падеж(удаляем "ий" и добавляем "ого" в конец)////// не нужно
+                 lastName.Substring(lastName.Length - 4) == "цкий")
+                {
+                    return lastName.Substring(0, lastName.Length - 2) + "ого";
+                }
+                else if (lastName.Substring(lastName.Length - 2) == "ой" ||//если фамилия заканчивается на ой или ий или ый,  переводим в родительный падеж(удаляем 2 символа в конце и добавляем "ого" в конец)
+                         lastName.Substring(lastName.Length - 2) == "ий" ||
+                         lastName.Substring(lastName.Length - 2) == "ый")
+                {
+                    return lastName.Substring(0, lastName.Length - 2) + "ого";
+                }
+                else if (lastName.Substring(lastName.Length - 2) == "ец")//если фамилия заканчивается на ец,  переводим в родительный падеж(обрезаем последнюю "ец" и добавляем "ца" в конец)
+                {
+                    return lastName.Substring(0, lastName.Length - 2) + "ца";
+                }
+                else if (_consonants.Any(i => i.ToString() == lastName.Substring(lastName.Length - 1))) //Является ли последняя буква фамилии согласной
+                {
+                    return lastName+"а";
+                }
+                else if (lastName.Substring(lastName.Length - 1) == "а")//если фамилия заканчивается на а,  переводим в родительный падеж(обрезаем последнюю "а" и добавляем "ы" в конец)
+                {
+                    return lastName.Substring(0, lastName.Length - 1) + "ы";
+                }
+                else if (lastName.Substring(lastName.Length - 1) == "ь")//если фамилия заканчивается на ь,  переводим в родительный падеж(обрезаем последнюю "ь" и добавляем "я" в конец)
+                {
+                    return lastName.Substring(0, lastName.Length - 1) + "я";
+                }
+
                 return "мужик";
             }
+
+
+
             else if (IsFemale(ParseMiddleName(_FIO)))// относится ли фио женщине 
             {
                 if (_consonants.Any(i => i.ToString() == lastName.Substring(lastName.Length - 1))) //Является ли последняя буква фамилии согласной
                 {
                     return lastName;
                 }
-                else
+                else if (lastName.Substring(lastName.Length - 3) == "ова" ||//если фамилия заканчивается на ова или ева,  переводим в родительный падеж(обрезаем последнюю "а" и добавляем "ой" в конец)
+                   lastName.Substring(lastName.Length - 3) == "ева")
                 {
-                    //здесь должна быть логика с женскими именами которые склоняются
-                   
+                    return lastName.Substring(0, lastName.Length - 1) + "ой";
+                }
+                else if (lastName.Substring(lastName.Length - 3) == "ина" ||//если фамилия заканчивается на ина или ына,  переводим в родительный падеж(обрезаем последнюю "а" и добавляем "ой" в конец)
+                  lastName.Substring(lastName.Length - 3) == "ына")
+                {
+                    return lastName.Substring(0, lastName.Length - 1) + "ой";
+                }
+                else if (lastName.Substring(lastName.Length - 4) == "ская" ||//если фамилия заканчивается на ская или цкая,  переводим в родительный падеж(обрезаем последнюю "ая" и добавляем "ой" в конец)////лишнее
+                lastName.Substring(lastName.Length - 4) == "цкая")
+                {
+                    return lastName.Substring(0, lastName.Length - 2) + "ой";
+                }
+                else if (lastName.Substring(lastName.Length - 2) == "ая")//если фамилия заканчивается на ая,  переводим в родительный падеж(обрезаем последнюю "ая" и добавляем "ой" в конец)
+                {
+                    return lastName.Substring(0, lastName.Length - 2) + "ой";
+                }
+                else if (lastName.Substring(lastName.Length - 1) == "а")//если фамилия заканчивается на а,  переводим в родительный падеж(обрезаем последнюю "а" и добавляем "ы" в конец)
+                {
+                    return lastName.Substring(0, lastName.Length - 1) + "ы";
+                }
+                else if (lastName.Substring(lastName.Length - 1) == "ь")//если фамилия заканчивается на ь, она не склоняется у женщин
+                {
+                    return lastName;
                 }
             }
             return "";
@@ -105,7 +176,7 @@ namespace DeclensionOfFullName
         //Метод определяет принадлежит ло отчество мужчине 
         public static bool IsMale(string middleName)
         {
-            if (middleName.Substring(middleName.Length - 4) == "ович"||
+            if (middleName.Substring(middleName.Length - 4) == "ович" ||
                 middleName.Substring(middleName.Length - 4) == "евич" ||
                 middleName.Substring(middleName.Length - 2) == "ич")
             {

@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "DeclensionOfFullName/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/DeclensionOfFullName.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeclensionOfFullName.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DeclensionOfFullName/1.0.0": {
+      "type": "project",
+      "path": "../DeclensionOfFullName/DeclensionOfFullName.csproj",
+      "msbuildProject": "../DeclensionOfFullName/DeclensionOfFullName.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "DeclensionOfFullName >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Михаил\\.nuget\\packages\\": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\DeclensionOfFullName.csproj",
-      "projectName": "DeclensionOfFullName",
-      "projectPath": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\DeclensionOfFullName.csproj",
+      "projectUniqueName": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectName": "ConsoleApp1",
+      "projectPath": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\ConsoleApp1\\ConsoleApp1.csproj",
       "packagesPath": "C:\\Users\\Михаил\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\obj\\",
+      "outputPath": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Михаил\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\DeclensionOfFullName.csproj": {
+              "projectPath": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\DeclensionOfFullName.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

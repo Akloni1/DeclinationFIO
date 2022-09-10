@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Михаил\\source\\repos\\DeclensionOfFullName\\DeclensionOfFullName.csproj": {}
+    "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\DeclensionOfFullName.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Михаил\\source\\repos\\DeclensionOfFullName\\DeclensionOfFullName.csproj": {
+    "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\DeclensionOfFullName.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Михаил\\source\\repos\\DeclensionOfFullName\\DeclensionOfFullName.csproj",
+        "projectUniqueName": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\DeclensionOfFullName.csproj",
         "projectName": "DeclensionOfFullName",
-        "projectPath": "C:\\Users\\Михаил\\source\\repos\\DeclensionOfFullName\\DeclensionOfFullName.csproj",
+        "projectPath": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\DeclensionOfFullName.csproj",
         "packagesPath": "C:\\Users\\Михаил\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Михаил\\source\\repos\\DeclensionOfFullName\\obj\\",
+        "outputPath": "C:\\Users\\Михаил\\Desktop\\DeclinationFIO\\DeclensionOfFullName\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Михаил\\AppData\\Roaming\\NuGet\\NuGet.Config",

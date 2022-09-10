@@ -10,3 +10,15 @@ C:\Users\Михаил\source\repos\DeclensionOfFullName\obj\Debug\net6.0\Declens
 C:\Users\Михаил\source\repos\DeclensionOfFullName\obj\Debug\net6.0\refint\DeclensionOfFullName.dll
 C:\Users\Михаил\source\repos\DeclensionOfFullName\obj\Debug\net6.0\DeclensionOfFullName.pdb
 C:\Users\Михаил\source\repos\DeclensionOfFullName\obj\Debug\net6.0\ref\DeclensionOfFullName.dll
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\bin\Debug\net6.0\DeclensionOfFullName.deps.json
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\bin\Debug\net6.0\DeclensionOfFullName.dll
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\bin\Debug\net6.0\DeclensionOfFullName.pdb
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\DeclensionOfFullName.csproj.AssemblyReference.cache
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\DeclensionOfFullName.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\DeclensionOfFullName.AssemblyInfoInputs.cache
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\DeclensionOfFullName.AssemblyInfo.cs
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\DeclensionOfFullName.csproj.CoreCompileInputs.cache
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\DeclensionOfFullName.dll
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\refint\DeclensionOfFullName.dll
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\DeclensionOfFullName.pdb
+C:\Users\Михаил\Desktop\DeclinationFIO\DeclensionOfFullName\obj\Debug\net6.0\ref\DeclensionOfFullName.dll
