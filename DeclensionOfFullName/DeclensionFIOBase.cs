@@ -39,6 +39,8 @@ namespace DeclensionOfFullName
         public abstract string DeclensionFirstName(string firstName);
         public abstract string DeclensionLastName(string lastName);
         public abstract string DeclensionMiddleName(string middleName);
+        public abstract string GetDeclensionLastNameInitials(string FIO);
+        public abstract string GetDeclensionOfThePatronymicName(string FIO);
 
     }
 }
