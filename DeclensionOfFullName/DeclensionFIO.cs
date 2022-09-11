@@ -100,11 +100,11 @@ namespace DeclensionOfFullName
                 {
                     return lastName + "а";
                 }
-                else if (lastName.Substring(lastName.Length - 4) == "ский" ||//если фамилия заканчивается на цкий или ский,  переводим в родительный падеж(удаляем "ий" и добавляем "ого" в конец)////// не нужно
+               /* else if (lastName.Substring(lastName.Length - 4) == "ский" ||//если фамилия заканчивается на цкий или ский,  переводим в родительный падеж(удаляем "ий" и добавляем "ого" в конец)////// не нужно
                  lastName.Substring(lastName.Length - 4) == "цкий")
                 {
                     return lastName.Substring(0, lastName.Length - 2) + "ого";
-                }
+                }*/
                 else if (lastName.Substring(lastName.Length - 2) == "ой" ||//если фамилия заканчивается на ой или ий или ый,  переводим в родительный падеж(удаляем 2 символа в конце и добавляем "ого" в конец)
                          lastName.Substring(lastName.Length - 2) == "ий" ||
                          lastName.Substring(lastName.Length - 2) == "ый")
@@ -149,11 +149,11 @@ namespace DeclensionOfFullName
                 {
                     return lastName.Substring(0, lastName.Length - 1) + "ой";
                 }
-                else if (lastName.Substring(lastName.Length - 4) == "ская" ||//если фамилия заканчивается на ская или цкая,  переводим в родительный падеж(обрезаем последнюю "ая" и добавляем "ой" в конец)////лишнее
+               /* else if (lastName.Substring(lastName.Length - 4) == "ская" ||//если фамилия заканчивается на ская или цкая,  переводим в родительный падеж(обрезаем последнюю "ая" и добавляем "ой" в конец)////лишнее
                 lastName.Substring(lastName.Length - 4) == "цкая")
                 {
                     return lastName.Substring(0, lastName.Length - 2) + "ой";
-                }
+                }*/
                 else if (lastName.Substring(lastName.Length - 2) == "ая")//если фамилия заканчивается на ая,  переводим в родительный падеж(обрезаем последнюю "ая" и добавляем "ой" в конец)
                 {
                     return lastName.Substring(0, lastName.Length - 2) + "ой";
@@ -181,45 +181,6 @@ namespace DeclensionOfFullName
                 return middleName.Substring(0, middleName.Length - 1) + "ы";
             }
             return middleName;
-        }
-        //Метод возвращает склоненное имя - отчество 
-        public override string GetDeclensionOfThePatronymicName(string FIO)
-        {
-            _FIO = FIO;
-            return DeclensionLastName(ParseFirstName(FIO)) + " " + DeclensionLastName(ParseMiddleName(FIO));
-
-        }
-
-        //Метод возвращает склоненные фамилия инициалы
-        public override string GetDeclensionLastNameInitials(string FIO)
-        {
-            _FIO = FIO;
-            return DeclensionLastName(ParseLastName(FIO)) + " " + ParseFirstName(FIO).Take(1).FirstOrDefault() + ". " + ParseMiddleName(FIO).Take(1).FirstOrDefault()+".";
-        }
-      
-
-        //Метод определяет принадлежит ло отчество мужчине 
-        public static bool IsMale(string middleName)
-        {
-            if (middleName.Substring(middleName.Length - 4) == "ович" ||
-                middleName.Substring(middleName.Length - 4) == "евич" ||
-                middleName.Substring(middleName.Length - 2) == "ич")
-            {
-                return true;
-            }
-            return false;
-        }
-        //Метод определяет принадлежит ло отчество женщине 
-        public static bool IsFemale(string middleName)
-        {
-            if (middleName.Substring(middleName.Length - 4) == "овна" ||
-                middleName.Substring(middleName.Length - 4) == "евна" ||
-                middleName.Substring(middleName.Length - 6) == "инична" ||
-                middleName.Substring(middleName.Length - 4) == "ична")
-            {
-                return true;
-            }
-            return false;
         }
     }
 }
