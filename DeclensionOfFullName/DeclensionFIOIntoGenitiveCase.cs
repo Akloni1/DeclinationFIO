@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace DeclensionOfFullName
 {
-    public class DeclensionFIO : DeclensionFIOBase
+    public class DeclensionFIOIntoGenitiveCase : DeclensionFIOBase
     {
        
       
@@ -16,6 +16,10 @@ namespace DeclensionOfFullName
         {
             if (firstName.Substring(firstName.Length - 1) == "а")
             {
+                if (_rearConsonants.Any(i=>i.ToString()== firstName.SkipLast(1).TakeLast(1).FirstOrDefault().ToString())) //если последняя буква равна букве, которая не попадает под правила, то меняем ее на и
+                {
+                    return firstName.Substring(0, firstName.Length - 1) + "и";
+                }
                 return firstName.Substring(0, firstName.Length - 1) + "ы";
             }
             else if (firstName.Substring(firstName.Length - 1) == "я")
@@ -62,7 +66,6 @@ namespace DeclensionOfFullName
         //Метод склоняет фамилию 
         public override string DeclensionLastName(string lastName)
         {
-
             if (lastName.Substring(lastName.Length - 1) == "о" ||
                 lastName.Substring(lastName.Length - 1) == "е" ||
                 lastName.Substring(lastName.Length - 1) == "ё" ||
@@ -121,6 +124,10 @@ namespace DeclensionOfFullName
                 }
                 else if (lastName.Substring(lastName.Length - 1) == "а")//если фамилия заканчивается на а,  переводим в родительный падеж(обрезаем последнюю "а" и добавляем "ы" в конец)
                 {
+                    if (_rearConsonants.Any(i => i.ToString() == lastName.SkipLast(1).TakeLast(1).FirstOrDefault().ToString())) //если последняя буква равна букве, которая не попадает под правила, то меняем ее на и
+                    {
+                        return lastName.Substring(0, lastName.Length - 1) + "и";
+                    }
                     return lastName.Substring(0, lastName.Length - 1) + "ы";
                 }
                 else if (lastName.Substring(lastName.Length - 1) == "ь")//если фамилия заканчивается на ь,  переводим в родительный падеж(обрезаем последнюю "ь" и добавляем "я" в конец)
@@ -160,6 +167,11 @@ namespace DeclensionOfFullName
                 }
                 else if (lastName.Substring(lastName.Length - 1) == "а")//если фамилия заканчивается на а,  переводим в родительный падеж(обрезаем последнюю "а" и добавляем "ы" в конец)
                 {
+                    if (_rearConsonants.Any(i => i.ToString() == lastName.SkipLast(1).TakeLast(1).FirstOrDefault().ToString())) //если последняя буква равна букве, которая не попадает под правила, то меняем ее на и
+                    {
+                        return lastName.Substring(0, lastName.Length - 1) + "и";
+                    }
+
                     return lastName.Substring(0, lastName.Length - 1) + "ы";
                 }
                 else if (lastName.Substring(lastName.Length - 1) == "ь")//если фамилия заканчивается на ь, она не склоняется у женщин

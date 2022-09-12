@@ -2,10 +2,12 @@
 using DeclensionOfFullName;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 //Console.WriteLine(DeclensionFIO.GetDeclensionLastNameFirstNameMiddleName("Лапоть Дарья Михайлович"));
 
-var h = new DeclensionFIO();
+var h = new DeclensionFIOIntoGenitiveCase();
+var g = new DeclensionFIOIntoDativeCase();
 List<string> test = new List<string>();
 test.Add("Данилов Кирилл Романович");
 test.Add("Самсонов Михаил Владимирович");
@@ -27,7 +29,7 @@ test.Add("Логинова Валерия Леоновна");
 test.Add("Петров Адам Степанович");
 test.Add("Зайцев Давид Кириллович");
 test.Add("Прохоров Артём Давидович");
-test.Add("Данилов Филипп Всеволодович"); 
+test.Add("Данилов Филипп Всеволодович");
 test.Add("Матвеева Вера Робертовна");
 test.Add("Фомин Артём Егорович");
 test.Add("Алексеева Анисия Максимовна");
@@ -42,7 +44,7 @@ test.Add("Карпова Милана Никитична");
 test.Add("Симонов Артём Иванович");
 test.Add("Федотова Арина Михайловна");
 test.Add("Алексеева София Тимофеевна");
-test.Add("Лебедев Тимур Евгеньевич"); 
+test.Add("Лебедев Тимур Евгеньевич");
 test.Add("Тихонова Анна Демьяновна");
 test.Add("Чесноков Марк Маркович");
 test.Add("Александров Даниил Маркович");
@@ -110,11 +112,24 @@ test.Add("Иванов Андрей Ильич");
 test.Add("Степанов Владислав Владиславович");
 test.Add("Агеева Таисия Арсеновна");
 
-
-foreach (string j in test)
+try
 {
-   Console.WriteLine(j+" ----- "+h.GetDeclensionLastNameFirstNameMiddleName(j));
+
+    foreach (string j in test)
+    {
+        Console.WriteLine(j + " ----- " + g.GetDeclensionLastNameFirstNameMiddleName(j));
+    }
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();
+    Console.WriteLine(g.GetDeclensionLastNameFirstNameMiddleName("         Зарюжа-Зарюжа      Лука-Лука  андреевич "));
+
+    Console.WriteLine(g.GetDeclensionOfThePatronymicName("         карПухИн      Рене  андреевич "));
+    stopwatch.Stop();
+    Console.WriteLine(stopwatch.ElapsedMilliseconds);
+    Console.WriteLine(g.GetDeclensionLastNameInitials("         карПухин-Карпухин      МихАил  андреевич "));
+    Console.WriteLine(g.GetDeclensionInitialsLastName("         карПухин-Карпухин      МихАил  андреевич "));
 }
-Console.WriteLine(h.GetDeclensionLastNameFirstNameMiddleName("         Яна      МихАил  андреевна "));
-Console.WriteLine(h.GetDeclensionOfThePatronymicName("         карПухИн      МихАил  андреевич "));
-Console.WriteLine(h.GetDeclensionLastNameInitials("         карП      МихАил  андреевич "));
+catch (Exception ex)
+{
+    Console.WriteLine(ex);
+}
